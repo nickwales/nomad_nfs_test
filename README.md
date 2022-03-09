@@ -2,6 +2,17 @@
 
 ### Setting up
 
+For this we will need virtualbox and vagrant:
+
+#### Virtual Box
+https://www.virtualbox.org/wiki/Downloads
+
+#### Vagrant
+https://www.vagrantup.com/docs/installation
+
+
+Once those are installed, the environment can be brought up:
+
 ```
 vagrant up
 ```
