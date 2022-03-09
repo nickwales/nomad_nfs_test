@@ -19,10 +19,3 @@ EOT
 echo "192.168.1.11 nomad" >> /etc/hosts
 
 sudo systemctl restart nfs-kernel-server
-
-#sudo ufw status
-#sudo ufw allow from client_ip to any port nfs
-#sudo ufw status
-
-
-
