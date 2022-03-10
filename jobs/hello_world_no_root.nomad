@@ -1,18 +1,12 @@
-job "hello_world_no_root" {
+job "hello_world_no_root_batch" {
 
   datacenters = [
   "dc1"
 ]
-  type = "service"
+  type = "batch"
 
   group "app" {
     count = 1
-
-    network {
-      port "http" {
-        to = 8000
-      }
-    }
 
     volume "nfs" {
       type = "host"
@@ -20,15 +14,15 @@ job "hello_world_no_root" {
       source = "nfs_no_root"
     }
 
-    restart {
-      attempts = 2
-      interval = "30m"
-      delay = "15s"
-      mode = "fail"
-    }
+    // restart {
+    //   attempts = 2
+    //   interval = "30m"
+    //   delay = "15s"
+    //   mode = "fail"
+    // }
 
     task "server" {
-      driver = "docker"
+      driver = "exec"
 
       volume_mount {
         volume      = "nfs"
@@ -36,12 +30,8 @@ job "hello_world_no_root" {
       }
 
       config {
-        image = "mnomitch/hello_world_server"
-        ports = ["http"]
-      }
-
-      env {
-        MESSAGE = "Hello World!"
+        command = "/bin/ls"
+        args = ["-la", "/mnt/nfs"]
       }
     }
   }
